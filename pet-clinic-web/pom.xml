@@ -13,7 +13,7 @@
 
     <dependencies>
         <dependency>
-            <artifactId>sfg-pet-clinic</artifactId>
+            <artifactId>pet-clinic-data</artifactId>
             <groupId>com.springframework</groupId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
