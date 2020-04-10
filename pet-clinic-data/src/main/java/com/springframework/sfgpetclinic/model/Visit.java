@@ -1,10 +1,8 @@
 package com.springframework.sfgpetclinic.model;
 
-import com.sun.xml.internal.rngom.parse.host.Base;
-
 import java.time.LocalDate;
 
-public class Visit extends Base {
+public class Visit extends BaseEntity {
 
     private LocalDate date;
     private String description;
