@@ -16,6 +16,18 @@ import java.util.Set;
 @Table(name = "pets")
 public class Pet extends NameEntity{
 
+    @Builder
+    public Pet(Long id, String name, PetType petType, Owner owner, LocalDate birthDate, Set<Visit> visits) {
+        super(id, name);
+        this.petType = petType;
+        this.owner = owner;
+        this.birthDate = birthDate;
+
+        if (visits == null || visits.size() > 0 ) {
+            this.visits = visits;
+        }
+    }
+
     @ManyToOne
     @JoinColumn(name = "type_id")
     private PetType petType;
