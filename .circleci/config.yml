@@ -22,6 +22,15 @@ jobs:
 
     steps:
       - checkout
+      - sonarcloud/scan
+      orbs:
+        sonarcloud: sonarsource/sonarcloud@1.0.0
+      version: 2.1
+      workflows:
+        main:
+          jobs:
+            - build:
+                context: sonarcloud
 
       # Download and cache dependencies
       - restore_cache:
@@ -41,7 +50,3 @@ jobs:
 
       # run tests!
       - run: mvn integration-test
-
-      - run:
-          name: Analyze on SonarCloud
-          command: mvn verify sonar:sonar -DskipTests
