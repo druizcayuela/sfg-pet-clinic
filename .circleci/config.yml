@@ -49,8 +49,12 @@ jobs:
       # run tests!
       - run: mvn integration-test
 
-workflows: # a single workflow with a single job called build
-  build:
+workflows:
+  version: 2
+  build-test-and-deploy:
     jobs:
-      - build:
+      - build
+      - test1:
+          requires:
+            - build
           context: SonarCloud
