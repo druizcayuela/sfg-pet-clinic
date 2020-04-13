@@ -22,7 +22,9 @@ jobs:
 
     steps:
       - checkout
-
+      - run:
+          name: Analyze on SonarCloud
+          command: mvn verify sonar:sonar
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -41,3 +43,9 @@ jobs:
 
       # run tests!
       - run: mvn integration-test
+
+workflows:
+  main:
+    jobs:
+      - build:
+          context: SonarCloud
