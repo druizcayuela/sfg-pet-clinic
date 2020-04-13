@@ -41,7 +41,7 @@ jobs:
 
       - run:
           name: Analyze on SonarCloud
-          command: mvn verify sonar:sonar -DskipTests -e
+          command: mvn verify sonar:sonar -DskipTests -e -Dsonar.projectKey=druizcayuela_pet-clinic-web
 
       # run tests!
       - run: mvn integration-test
