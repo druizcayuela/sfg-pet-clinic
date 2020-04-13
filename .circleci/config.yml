@@ -24,10 +24,10 @@ jobs:
       - checkout
       - run:
           name: Analyze on SonarCloud Web
-          command: mvn verify sonar:sonar -DskipTests -e -Dsonar.projectKey=druizcayuela_pet-clinic-web -Dsonar.organization=druizcayuela -Dsonar.host.url=https://sonarcloud.io
+          command: mvn verify sonar:sonar -DskipTests -e -Dsonar.projectKey=druizcayuela_pet-clinic-web -Dsonar.organization=druizcayuela -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=6b28fed3876dd573551595c67e7c26d09ac7cf98
       - run:
           name: Analyze on SonarCloud Data
-          command: mvn verify sonar:sonar -DskipTests -e -Dsonar.projectKey=druizcayuela_pet-clinic-data -Dsonar.organization=druizcayuela -Dsonar.host.url=https://sonarcloud.io
+          command: mvn verify sonar:sonar -DskipTests -e -Dsonar.projectKey=druizcayuela_pet-clinic-data -Dsonar.organization=druizcayuela -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=6b28fed3876dd573551595c67e7c26d09ac7cf98
 
 
       # Download and cache dependencies
@@ -48,13 +48,3 @@ jobs:
 
       # run tests!
       - run: mvn integration-test
-
-workflows:
-  version: 2
-  build-test-and-deploy:
-    jobs:
-      - build
-      - test1:
-          requires:
-            - build
-          context: SonarCloud
