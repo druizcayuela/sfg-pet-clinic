@@ -39,5 +39,9 @@ jobs:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
+      - run:
+          name: Analyze on SonarCloud
+          command: mvn verify sonar:sonar -DskipTests
+
       # run tests!
       - run: mvn integration-test
