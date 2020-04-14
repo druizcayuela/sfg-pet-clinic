@@ -26,21 +26,7 @@ jobs:
           name: Analyze on SonarCloud
           command: mvn verify sonar:sonar -DskipTests -Dsonar.organization=druizcayuela -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=6b28fed3876dd573551595c67e7c26d09ac7cf98
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "pom.xml" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
       - run: mvn install -DskipTests
-
-      - run: mvn dependency:go-offline
-
-      - save_cache:
-          paths:
-            - ~/.m2
-          key: v1-dependencies-{{ checksum "pom.xml" }}
 
       # run tests!
       - run: mvn integration-test
