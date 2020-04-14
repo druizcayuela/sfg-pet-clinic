@@ -99,6 +99,7 @@ public class PetController {
         }
         else {
             owner.getPets().add(pet);
+            pet.setOwner(owner);
             petService.save(pet);
             return "redirect:/owners/" + owner.getId();
         }
