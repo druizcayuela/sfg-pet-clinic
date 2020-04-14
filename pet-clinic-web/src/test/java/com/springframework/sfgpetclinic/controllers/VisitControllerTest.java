@@ -4,6 +4,7 @@ import com.springframework.sfgpetclinic.model.Owner;
 import com.springframework.sfgpetclinic.model.Pet;
 import com.springframework.sfgpetclinic.model.PetType;
 import com.springframework.sfgpetclinic.services.PetService;
+import com.springframework.sfgpetclinic.services.VisitService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -36,6 +37,9 @@ class VisitControllerTest {
 
     @Mock
     PetService petService;
+
+    @Mock
+    VisitService visitService;
 
     @InjectMocks
     VisitController visitController;
