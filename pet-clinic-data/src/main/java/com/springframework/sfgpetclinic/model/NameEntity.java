@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotEmpty;
 
 @Setter
 @Getter
@@ -16,6 +17,7 @@ import javax.persistence.MappedSuperclass;
 public class NameEntity extends BaseEntity {
 
     @Column(name = "name")
+    @NotEmpty
     private String name;
 
     @Override

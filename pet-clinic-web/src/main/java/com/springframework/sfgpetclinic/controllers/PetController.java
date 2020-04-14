@@ -6,6 +6,7 @@ import com.springframework.sfgpetclinic.model.PetType;
 import com.springframework.sfgpetclinic.services.OwnerService;
 import com.springframework.sfgpetclinic.services.PetService;
 import com.springframework.sfgpetclinic.services.PetTypeService;
+import com.springframework.sfgpetclinic.validators.PetValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -15,15 +16,13 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.beans.PropertyEditorSupport;
-import java.time.LocalDate;
 import java.util.Collection;
 
 @Controller
 @RequestMapping("/owners/{ownerId}")
 public class PetController {
 
-    private static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM = "pets/createOrUpdatePetForm";
+    static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM = "pets/createOrUpdatePetForm";
 
     private final PetTypeService petTypeService;
     private final PetService petService;
@@ -48,13 +47,11 @@ public class PetController {
     @InitBinder("owner")
     public void dataBinder(WebDataBinder dataBinder) {
         dataBinder.setDisallowedFields("id");
+    }
 
-        dataBinder.registerCustomEditor(LocalDate.class, new PropertyEditorSupport() {
-            @Override
-            public void setAsText(String text) throws IllegalArgumentException{
-                setValue(LocalDate.parse(text));
-            }
-        });
+    @InitBinder("pet")
+    public void initPetBinder(WebDataBinder dataBinder) {
+        dataBinder.setValidator(new PetValidator());
     }
 
     @GetMapping("/pets/new")

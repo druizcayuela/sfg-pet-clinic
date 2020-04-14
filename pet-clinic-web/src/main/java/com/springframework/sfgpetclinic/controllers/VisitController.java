@@ -17,6 +17,8 @@ import java.time.LocalDate;
 @Controller
 public class VisitController {
 
+    static final String PETS_CREATE_OR_UPDATE_VISIT_FORM = "pets/createOrUpdateVisitForm";
+
     private final VisitService visitService;
     private final PetService petService;
 
@@ -49,13 +51,13 @@ public class VisitController {
 
     @GetMapping("/owners/*/pets/{petId}/visits/new")
     public String initNewVisitForm(@PathVariable Long petId, Model model) {
-        return "pets/createOrUpdateVisitForm";
+        return PETS_CREATE_OR_UPDATE_VISIT_FORM;
     }
 
     @PostMapping("/owners/{ownerId}/pets/{petId}/visits/new")
     public String processNewVisitForm(@Valid Visit visit, BindingResult result) {
         if (result.hasErrors()) {
-            return "pets/createOrUpdateVisitForm";
+            return PETS_CREATE_OR_UPDATE_VISIT_FORM;
         }
         else {
             visitService.save(visit);
