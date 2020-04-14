@@ -14,6 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.format.support.DefaultFormattingConversionService;
+import org.springframework.format.support.FormattingConversionService;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -60,7 +61,7 @@ class PetControllerTest {
         petTypes.add(PetType.builder().id(1L).name("Dog").build());
         petTypes.add(PetType.builder().id(2L).name("Cat").build());
 
-        var conversionService = new DefaultFormattingConversionService();
+        FormattingConversionService conversionService = new DefaultFormattingConversionService();
         conversionService.addFormatterForFieldType(PetType.class, new PetTypeFormatter(petTypeService));
         mockMvc = MockMvcBuilders
                 .standaloneSetup(petController)
