@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,16 +21,6 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
     public OwnerMapService(PetTypeService petTypeService, PetService petService) {
         this.petTypeService = petTypeService;
         this.petService = petService;
-    }
-
-    @Override
-    public Set<Owner> findAll() {
-        return super.findAll();
-    }
-
-    @Override
-    public Owner findById(Long id) {
-        return super.findById(id);
     }
 
     @Override
@@ -59,16 +48,6 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
         } else {
             return null;
         }
-    }
-
-    @Override
-    public void delete(Owner object) {
-        super.delete(object);
-    }
-
-    @Override
-    public void deleteById(Long id) {
-        super.deleteById(id);
     }
 
     @Override
