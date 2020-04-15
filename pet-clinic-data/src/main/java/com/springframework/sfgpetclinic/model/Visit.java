@@ -16,6 +16,10 @@ import java.time.LocalDate;
 @Table(name = "visits")
 public class Visit extends BaseEntity {
 
+    @ManyToOne
+    @JoinColumn(name = "pet_id")
+    private Pet pet;
+
     @Column(name = "date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
@@ -23,8 +27,4 @@ public class Visit extends BaseEntity {
     @Column(name = "description")
     @NotEmpty
     private String description;
-
-    @ManyToOne
-    @JoinColumn(name = "pet_id")
-    private Pet pet;
 }

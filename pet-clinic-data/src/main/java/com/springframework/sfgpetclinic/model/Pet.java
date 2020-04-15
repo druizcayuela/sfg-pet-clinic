@@ -17,16 +17,20 @@ import java.util.Set;
 public class Pet extends NameEntity{
 
     @Builder
-    public Pet(Long id, String name, PetType petType, Owner owner, LocalDate birthDate, Set<Visit> visits) {
+    public Pet(Long id, String name, LocalDate birthDate, PetType petType, Owner owner, Set<Visit> visits) {
         super(id, name);
+        this.birthDate = birthDate;
         this.petType = petType;
         this.owner = owner;
-        this.birthDate = birthDate;
 
         if (visits == null || visits.size() > 0 ) {
             this.visits = visits;
         }
     }
+
+    @Column(name = "birth_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate birthDate;
 
     @ManyToOne
     @JoinColumn(name = "type_id")
@@ -35,10 +39,6 @@ public class Pet extends NameEntity{
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private Owner owner;
-
-    @Column(name = "birth_date")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate birthDate;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
     private Set<Visit> visits = new HashSet<>();
