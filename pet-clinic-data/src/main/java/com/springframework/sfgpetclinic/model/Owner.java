@@ -1,6 +1,9 @@
 package com.springframework.sfgpetclinic.model;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
@@ -10,7 +13,6 @@ import java.util.Set;
 
 @Setter
 @Getter
-@EqualsAndHashCode
 @NoArgsConstructor
 @Entity
 @Table(name = "owners")

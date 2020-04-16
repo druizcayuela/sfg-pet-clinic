@@ -10,7 +10,6 @@ import java.util.Set;
 
 @Setter
 @Getter
-@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
